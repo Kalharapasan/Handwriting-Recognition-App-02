@@ -41,3 +41,15 @@ class ModelPerformance(Base):
 
 
 class DatabaseManager: 
+    
+    def add_prediction(self, predicted_digit, confidence, image_path, user_input_type, file_name):
+        prediction = PredictionHistory(
+            predicted_digit=predicted_digit,
+            confidence=confidence,
+            image_path=image_path,
+            user_input_type=user_input_type,
+            file_name=file_name
+        )
+        self.session.add(prediction)
+        self.session.commit()
+        return prediction.id
