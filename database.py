@@ -70,4 +70,10 @@ class DatabaseManager:
         return self.session.query(PredictionHistory).order_by(PredictionHistory.timestamp.desc()).limit(limit).all()
 
     def get_performance_stats(self):
-        
+        feedbacks = self.session.query(UserFeedback).all()
+        if feedbacks:
+            correct = sum(1 for f in feedbacks if f.correct_prediction == 1)
+            total = len(feedbacks)
+            accuracy = correct / total if total > 0 else 0
+        else:
+            accuracy = 0
