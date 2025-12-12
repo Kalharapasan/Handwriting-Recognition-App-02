@@ -18,6 +18,8 @@ class ImagePreprocessor:
         if np.mean(image) < 127:
             image = 255 - image
         image = image.astype('float32') / 255.0
+        image = image.reshape(1, 28, 28, 1)
+        return image
     
     @staticmethod
     def extract_digits_from_image(image_path):
