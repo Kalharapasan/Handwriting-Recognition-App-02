@@ -28,3 +28,13 @@ class UserFeedback(Base):
     actual_digit = Column(Integer)
     correct_prediction = Column(Integer)  
     comments = Column(Text)
+
+class ModelPerformance(Base):
+    __tablename__ = 'model_performance'
+    
+    id = Column(Integer, primary_key=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    accuracy = Column(Float)
+    loss = Column(Float)
+    validation_accuracy = Column(Float)
+    validation_loss = Column(Float)
