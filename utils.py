@@ -15,6 +15,8 @@ class ImagePreprocessor:
             image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
         image = cv2.resize(image, target_size)
         _, image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+        if np.mean(image) < 127:
+            image = 255 - image
     
     @staticmethod
     def extract_digits_from_image(image_path):
