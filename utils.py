@@ -10,6 +10,10 @@ import tempfile
 class ImagePreprocessor:
     
     @staticmethod
+    def preprocess_image(image, target_size=(28, 28)):
+        
+    
+    @staticmethod
     def extract_digits_from_image(image_path):
         image = cv2.imread(image_path)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
