@@ -84,3 +84,5 @@ class DatabaseManager:
             'total_predictions': len(recent_predictions),
             'average_confidence': np.mean([p.confidence for p in recent_predictions]) if recent_predictions else 0
         }
+    def close(self):
+        self.session.close()
