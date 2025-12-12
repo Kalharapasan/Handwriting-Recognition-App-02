@@ -18,6 +18,8 @@ class ImagePreprocessor:
         digit_images = []
         for contour in contours:
             x, y, w, h = cv2.boundingRect(contour)
+        if w > 10 and h > 10:
+            
     
     @staticmethod
     def convert_pdf_to_images(pdf_path):
