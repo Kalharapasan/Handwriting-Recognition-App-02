@@ -18,3 +18,13 @@ class PredictionHistory(Base):
     image_path = Column(String(500))
     user_input_type = Column(String(50))  
     file_name = Column(String(255))
+
+class UserFeedback(Base):
+    __tablename__ = 'user_feedback'
+    
+    id = Column(Integer, primary_key=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+    prediction_id = Column(Integer)
+    actual_digit = Column(Integer)
+    correct_prediction = Column(Integer)  
+    comments = Column(Text)
