@@ -19,6 +19,8 @@ class ImagePreprocessor:
         for contour in contours:
             x, y, w, h = cv2.boundingRect(contour)
         if w > 10 and h > 10:
+            digit = gray[y:y+h, x:x+w]
+            digit_images.append(digit)
             
     
     @staticmethod
