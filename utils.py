@@ -15,6 +15,9 @@ class ImagePreprocessor:
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
         contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        digit_images = []
+        for contour in contours:
+            x, y, w, h = cv2.boundingRect(contour)
     
     @staticmethod
     def convert_pdf_to_images(pdf_path):
