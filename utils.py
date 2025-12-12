@@ -21,6 +21,7 @@ class ImagePreprocessor:
         if w > 10 and h > 10:
             digit = gray[y:y+h, x:x+w]
             digit_images.append(digit)
+        return digit_images
             
     
     @staticmethod
