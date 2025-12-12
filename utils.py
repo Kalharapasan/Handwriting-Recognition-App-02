@@ -7,6 +7,8 @@ import os
 from pdf2image import convert_from_path
 import tempfile
 
+class ImagePreprocessor:
+
 class ModelManager:
     def __init__(self, model_path=None):
         self.model = None
