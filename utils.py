@@ -95,3 +95,5 @@ class ModelManager:
             digit, confidence = self.predict_digit(processed_image)
             results.append((digit, confidence))
         return results
+
+model_manager = ModelManager('models/handwriting_model.h5')
