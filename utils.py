@@ -8,6 +8,9 @@ from pdf2image import convert_from_path
 import tempfile
 
 class ModelManager:
+    def __init__(self, model_path=None):
+        self.model = None
+        self.load_model(model_path)
     
     def load_model(self, model_path):
         if model_path and os.path.exists(model_path):
