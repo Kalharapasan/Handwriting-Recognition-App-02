@@ -13,6 +13,7 @@ class ImagePreprocessor:
     def preprocess_image(image, target_size=(28, 28)):
         if len(image.shape) == 3:
             image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+        image = cv2.resize(image, target_size)
         
     
     @staticmethod
