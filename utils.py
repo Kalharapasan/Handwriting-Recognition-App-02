@@ -8,6 +8,12 @@ from pdf2image import convert_from_path
 import tempfile
 
 class ImagePreprocessor:
+    
+    @staticmethod
+    def convert_pdf_to_images(pdf_path):
+        images = convert_from_path(pdf_path)
+        return images
+    
     @staticmethod
     def enhance_image_quality(image):
         image = cv2.GaussianBlur(image, (3, 3), 0)
