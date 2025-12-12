@@ -8,6 +8,13 @@ from pdf2image import convert_from_path
 import tempfile
 
 class ImagePreprocessor:
+    @staticmethod
+    def enhance_image_quality(image):
+        image = cv2.GaussianBlur(image, (3, 3), 0)
+        kernel = np.ones((2, 2), np.uint8)
+        image = cv2.morphologyEx(image, cv2.MORPH_CLOSE, kernel)
+        
+        return image
 
 class ModelManager:
     def __init__(self, model_path=None):
