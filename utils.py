@@ -9,6 +9,15 @@ import tempfile
 
 class ModelManager:
     
+    def predict_digit(self, image):
+        if self.model is None:
+            return 0, 0.0
+        
+        predictions = self.model.predict(image, verbose=0)
+        predicted_digit = np.argmax(predictions[0])
+        confidence = np.max(predictions[0])
+        
+        return predicted_digit, confidence
     
     def predict_multiple_digits(self, images):
         results = []
