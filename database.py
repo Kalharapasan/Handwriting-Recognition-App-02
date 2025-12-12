@@ -77,3 +77,10 @@ class DatabaseManager:
             accuracy = correct / total if total > 0 else 0
         else:
             accuracy = 0
+        recent_predictions = self.session.query(PredictionHistory).order_by(PredictionHistory.timestamp.desc()).limit(50).all()
+        
+        return {
+            'user_accuracy': accuracy,
+            'total_predictions': len(recent_predictions),
+            'average_confidence': np.mean([p.confidence for p in recent_predictions]) if recent_predictions else 0
+        }
