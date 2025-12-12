@@ -42,8 +42,13 @@ class ModelPerformance(Base):
 
 class DatabaseManager: 
     
-    
-    
+    def __init__(self, db_path='handwriting_db.sqlite'):
+        self.db_path = db_path
+        self.engine = create_engine(f'sqlite:///{db_path}')
+        Base.metadata.create_all(self.engine)
+        Session = sessionmaker(bind=self.engine)
+        self.session = Session()
+        
     def add_prediction(self, predicted_digit, confidence, image_path, user_input_type, file_name):
         prediction = PredictionHistory(
             predicted_digit=predicted_digit,
