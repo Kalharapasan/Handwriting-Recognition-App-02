@@ -65,3 +65,6 @@ class DatabaseManager:
         )
         self.session.add(feedback)
         self.session.commit()
+        
+    def get_prediction_history(self, limit=100):
+        return self.session.query(PredictionHistory).order_by(PredictionHistory.timestamp.desc()).limit(limit).all()
