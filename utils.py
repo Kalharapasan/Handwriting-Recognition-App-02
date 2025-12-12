@@ -17,6 +17,7 @@ class ImagePreprocessor:
         _, image = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
         if np.mean(image) < 127:
             image = 255 - image
+        image = image.astype('float32') / 255.0
     
     @staticmethod
     def extract_digits_from_image(image_path):
