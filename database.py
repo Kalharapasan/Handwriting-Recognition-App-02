@@ -91,3 +91,5 @@ class DatabaseManager:
         }
     def close(self):
         self.session.close()
+
+db_manager = DatabaseManager()
