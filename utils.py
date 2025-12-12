@@ -9,6 +9,12 @@ import tempfile
 
 class ModelManager:
     
+    def load_model(self, model_path):
+        if model_path and os.path.exists(model_path):
+            self.model = keras.models.load_model(model_path)
+        else:
+            self.model = self.create_default_model()
+    
     def create_default_model(self):
         model = keras.Sequential([
             keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)),
