@@ -10,6 +10,11 @@ import tempfile
 class ImagePreprocessor:
     
     @staticmethod
+    def extract_digits_from_image(image_path):
+        image = cv2.imread(image_path)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
+    @staticmethod
     def convert_pdf_to_images(pdf_path):
         images = convert_from_path(pdf_path)
         return images
