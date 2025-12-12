@@ -38,3 +38,6 @@ class ModelPerformance(Base):
     loss = Column(Float)
     validation_accuracy = Column(Float)
     validation_loss = Column(Float)
+
+
+class DatabaseManager: 
