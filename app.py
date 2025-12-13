@@ -277,6 +277,10 @@ def show_image_upload():
                     image_array = np.array(image)
                     processed_image = ImagePreprocessor.preprocess_image(image_array)
                     predicted_digit, confidence = model_manager.predict_digit(processed_image)
+                    file_path = save_uploaded_file(uploaded_file, "images")
+                    prediction_id = db_manager.add_prediction(
+                        predicted_digit, confidence, file_path, "image_upload", uploaded_file.name
+                    )
         
     
         
