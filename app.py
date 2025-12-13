@@ -360,6 +360,9 @@ def show_document_upload():
                 
             except Exception as e:
                 st.error(f"Error processing PDF: {str(e)}")
+        elif file_ext == 'txt':
+            content = uploaded_file.getvalue().decode()
+            st.text_area("File Content", content, height=200)
         
     
         
