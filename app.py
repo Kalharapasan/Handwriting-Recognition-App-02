@@ -189,3 +189,7 @@ def show_dashboard():
         if st.button("📊 View Analytics", use_container_width=True):
             st.session_state.current_page = "Analytics"
             st.rerun()
+
+def show_drawing_interface():
+    st.subheader("Draw a Digit (0-9)")
+    col1, col2 = st.columns([2, 1])
