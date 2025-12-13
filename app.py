@@ -70,3 +70,15 @@ def init_session_state():
         st.session_state.uploaded_files = []
     if 'current_prediction' not in st.session_state:
         st.session_state.current_prediction = None
+
+def save_uploaded_file(uploaded_file, file_type):
+    os.makedirs(f"uploaded_files/{file_type}", exist_ok=True)
+    
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    file_ext = uploaded_file.name.split('.')[-1]
+    file_path = f"uploaded_files/{file_type}/{timestamp}.{file_ext}"
+    
+    with open(file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+    
+    return file_path
