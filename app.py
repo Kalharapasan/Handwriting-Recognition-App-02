@@ -235,3 +235,6 @@ def show_drawing_interface():
                     'confidence': confidence,
                     'image': processed_image
                 }
+            if st.button("🧹 Clear Canvas", use_container_width=True):
+                st.rerun()
+                
