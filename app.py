@@ -258,6 +258,13 @@ def show_drawing_interface():
                 db_manager.add_feedback(prediction['id'], actual_digit, is_correct, comments)
                 st.success("Thank you for your feedback!")
                 st.session_state.current_prediction = None
+def show_image_upload():
+    st.subheader("Upload Image File")
+    
+    uploaded_file = st.file_uploader("Choose an image file", type=['png', 'jpg', 'jpeg', 'bmp'])
+    
+    if uploaded_file is not None:
+        col1, col2 = st.columns(2)
         
         
                 
