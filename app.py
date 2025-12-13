@@ -14,3 +14,10 @@ import base64
 from database import db_manager
 from utils import ImagePreprocessor, model_manager
 
+st.set_page_config(
+    page_title="Advanced Handwriting Recognition",
+    page_icon="✍️",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
