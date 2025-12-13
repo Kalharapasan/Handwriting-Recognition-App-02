@@ -406,6 +406,11 @@ def show_analytics():
         fig = px.histogram(df, x='confidence', nbins=20,
                           labels={'confidence': 'Confidence Level'})
         st.plotly_chart(fig, use_container_width=True)
+    st.subheader("Predictions Over Time")
+    df_daily = df.groupby(df['timestamp'].dt.date).size().reset_index(name='count')
+    fig = px.line(df_daily, x='timestamp', y='count',
+                 labels={'timestamp': 'Date', 'count': 'Predictions per Day'})
+    st.plotly_chart(fig, use_container_width=True)
     
         
         
