@@ -330,6 +330,13 @@ def show_document_upload():
             try:
                 images = ImagePreprocessor.convert_pdf_to_images(tmp_path)
                 st.write(f"PDF converted to {len(images)} pages")
+                for page_num, image in enumerate(images):
+                    st.subheader(f"Page {page_num + 1}")
+                    
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        st.image(image, caption=f"Page {page_num + 1}", use_column_width=True)
         
     
         
