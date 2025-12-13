@@ -21,3 +21,44 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+def local_css():
+    st.markdown("""
+    <style>
+    .main-header {
+        font-size: 3rem;
+        color: #1f77b4;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .sub-header {
+        font-size: 1.5rem;
+        color: #ff7f0e;
+        margin-bottom: 1rem;
+    }
+    .prediction-box {
+        background-color: #f0f2f6;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 5px solid #1f77b4;
+    }
+    .confidence-high {
+        color: #2ecc71;
+        font-weight: bold;
+    }
+    .confidence-medium {
+        color: #f39c12;
+        font-weight: bold;
+    }
+    .confidence-low {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+    .stat-box {
+        background-color: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    </style>
+    """, unsafe_allow_html=True)
