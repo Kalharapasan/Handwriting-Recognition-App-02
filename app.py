@@ -395,6 +395,12 @@ def show_analytics():
     st.markdown("---")
     
     col1, col2 = st.columns(2)
+    with col1:
+        st.subheader("Digit Distribution")
+        digit_counts = df['digit'].value_counts().sort_index()
+        fig = px.bar(x=digit_counts.index, y=digit_counts.values,
+                    labels={'x': 'Digit', 'y': 'Count'})
+        st.plotly_chart(fig, use_container_width=True)
     
         
         
