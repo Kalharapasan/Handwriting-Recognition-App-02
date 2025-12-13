@@ -1,5 +1,6 @@
 import sqlite3
 import pandas as pd
+import numpy as np
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, Float, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -46,50 +47,50 @@ class DatabaseManager:
         self.db_path = db_path
         self.engine = create_engine(f'sqlite:///{db_path}')
         Base.metadata.create_all(self.engine)
-        Session = sessionmaker(bind=self.engine)
-        self.session = Session()
+        self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
         
     def add_prediction(self, predicted_digit, confidence, image_path, user_input_type, file_name):
-        prediction = PredictionHistory(
-            predicted_digit=predicted_digit,
-            confidence=confidence,
-            image_path=image_path,
-            user_input_type=user_input_type,
-            file_name=file_name
-        )
-        self.session.add(prediction)
-        self.session.commit()
-        return prediction.id
+        with self.SessionLocal() as session:
+            prediction = PredictionHistory(
+                predicted_digit=predicted_digit,
+                confidence=confidence,
+                image_path=image_path,
+                user_input_type=user_input_type,
+                file_name=file_name
+            )
+            session.add(prediction)
+            session.commit()
+            return prediction.id
 
     def add_feedback(self, prediction_id, actual_digit, correct_prediction, comments=""):
-        feedback = UserFeedback(
-            prediction_id=prediction_id,
-            actual_digit=actual_digit,
-            correct_prediction=correct_prediction,
-            comments=comments
-        )
-        self.session.add(feedback)
-        self.session.commit()
+        with self.SessionLocal() as session:
+            feedback = UserFeedback(
+                prediction_id=prediction_id,
+                actual_digit=actual_digit,
+                correct_prediction=correct_prediction,
+                comments=comments
+            )
+            session.add(feedback)
+            session.commit()
         
     def get_prediction_history(self, limit=100):
-        return self.session.query(PredictionHistory).order_by(PredictionHistory.timestamp.desc()).limit(limit).all()
+        with self.SessionLocal() as session:
+            return session.query(PredictionHistory).order_by(PredictionHistory.timestamp.desc()).limit(limit).all()
 
     def get_performance_stats(self):
-        feedbacks = self.session.query(UserFeedback).all()
-        if feedbacks:
-            correct = sum(1 for f in feedbacks if f.correct_prediction == 1)
-            total = len(feedbacks)
-            accuracy = correct / total if total > 0 else 0
-        else:
-            accuracy = 0
-        recent_predictions = self.session.query(PredictionHistory).order_by(PredictionHistory.timestamp.desc()).limit(50).all()
-        
-        return {
-            'user_accuracy': accuracy,
-            'total_predictions': len(recent_predictions),
-            'average_confidence': np.mean([p.confidence for p in recent_predictions]) if recent_predictions else 0
-        }
-    def close(self):
-        self.session.close()
-
+        with self.SessionLocal() as session:
+            feedbacks = session.query(UserFeedback).all()
+            if feedbacks:
+                correct = sum(1 for f in feedbacks if f.correct_prediction == 1)
+                total = len(feedbacks)
+                accuracy = correct / total if total > 0 else 0
+            else:
+                accuracy = 0
+            recent_predictions = session.query(PredictionHistory).order_by(PredictionHistory.timestamp.desc()).limit(50).all()
+            
+            return {
+                'user_accuracy': accuracy,
+                'total_predictions': len(recent_predictions),
+                'average_confidence': np.mean([p.confidence for p in recent_predictions]) if recent_predictions else 0
+            }
 db_manager = DatabaseManager()

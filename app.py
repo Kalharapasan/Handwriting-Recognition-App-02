@@ -159,9 +159,14 @@ def show_dashboard():
     if recent_predictions:
         prediction_data = []
         for pred in recent_predictions:
+            digit = pred.predicted_digit
+            if isinstance(digit, bytes):
+                digit = int.from_bytes(digit, 'little')
+            else:
+                digit = int(digit)
             prediction_data.append({
                 'Timestamp': pred.timestamp,
-                'Digit': pred.predicted_digit,
+                'Digit': digit,
                 'Confidence': f"{pred.confidence:.1%}",
                 'Type': pred.user_input_type,
                 'File': pred.file_name
@@ -376,7 +381,7 @@ def show_analytics():
         return      
     df = pd.DataFrame([{
         'timestamp': p.timestamp,
-        'digit': p.predicted_digit,
+        'digit': int.from_bytes(p.predicted_digit, 'little') if isinstance(p.predicted_digit, bytes) else int(p.predicted_digit),
         'confidence': p.confidence,
         'type': p.user_input_type
     } for p in predictions]) 
@@ -440,8 +445,11 @@ def show_model_management():
         if uploaded_model and st.button("Update Model"):
             with open("models/handwriting_model.h5", "wb") as f:
                 f.write(uploaded_model.getbuffer())
-            model_manager.load_model("models/handwriting_model.h5")
-            st.success("Model updated successfully!")
+            try:
+                model_manager.load_model("models/handwriting_model.h5")
+                st.success("Model updated successfully!")
+            except Exception as e:
+                st.error(f"Failed to load model: {str(e)}")
         st.subheader("Performance Metrics")
 
 def save_uploaded_file_placeholder(file_type, image):

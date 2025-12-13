@@ -30,9 +30,9 @@ class ImagePreprocessor:
         digit_images = []
         for contour in contours:
             x, y, w, h = cv2.boundingRect(contour)
-        if w > 10 and h > 10:
-            digit = gray[y:y+h, x:x+w]
-            digit_images.append(digit)
+            if w > 10 and h > 10:
+                digit = gray[y:y+h, x:x+w]
+                digit_images.append(digit)
         return digit_images
             
     
@@ -56,7 +56,11 @@ class ModelManager:
     
     def load_model(self, model_path):
         if model_path and os.path.exists(model_path):
-            self.model = keras.models.load_model(model_path)
+            try:
+                self.model = keras.models.load_model(model_path)
+            except Exception as e:
+                print(f"Failed to load model {model_path}: {e}. Creating default model.")
+                self.model = self.create_default_model()
         else:
             self.model = self.create_default_model()
     
@@ -96,4 +100,4 @@ class ModelManager:
             results.append((digit, confidence))
         return results
 
-model_manager = ModelManager('models/handwriting_model.h5')
+model_manager = ModelManager('models/best_handwriting_model.h5')
