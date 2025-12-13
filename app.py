@@ -328,7 +328,6 @@ def show_document_upload():
                 tmp_path = tmp_file.name
             
             try:
-                # Convert PDF to images
                 images = ImagePreprocessor.convert_pdf_to_images(tmp_path)
                 st.write(f"PDF converted to {len(images)} pages")
         
