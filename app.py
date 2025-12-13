@@ -62,3 +62,11 @@ def local_css():
     }
     </style>
     """, unsafe_allow_html=True)
+    
+def init_session_state():
+    if 'prediction_history' not in st.session_state:
+        st.session_state.prediction_history = []
+    if 'uploaded_files' not in st.session_state:
+        st.session_state.uploaded_files = []
+    if 'current_prediction' not in st.session_state:
+        st.session_state.current_prediction = None
