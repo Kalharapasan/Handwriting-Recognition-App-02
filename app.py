@@ -276,6 +276,7 @@ def show_image_upload():
                 if process_type == "Single Digit":
                     image_array = np.array(image)
                     processed_image = ImagePreprocessor.preprocess_image(image_array)
+                    predicted_digit, confidence = model_manager.predict_digit(processed_image)
         
     
         
