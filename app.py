@@ -363,6 +363,9 @@ def show_document_upload():
         elif file_ext == 'txt':
             content = uploaded_file.getvalue().decode()
             st.text_area("File Content", content, height=200)
+            digits_found = [char for char in content if char.isdigit()]
+            if digits_found:
+                st.write(f"Found {len(digits_found)} digits in text: {', '.join(digits_found)}")
         
     
         
