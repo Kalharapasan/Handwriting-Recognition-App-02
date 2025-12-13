@@ -82,3 +82,21 @@ def save_uploaded_file(uploaded_file, file_type):
         f.write(uploaded_file.getbuffer())
     
     return file_path
+
+def plot_prediction_probabilities(predictions):
+    digits = list(range(10))
+    probabilities = predictions[0]
+    
+    fig = go.Figure(data=[
+        go.Bar(x=digits, y=probabilities,
+               marker_color=['red' if i == np.argmax(probabilities) else 'blue' for i in digits])
+    ])
+    
+    fig.update_layout(
+        title="Prediction Probabilities",
+        xaxis_title="Digits",
+        yaxis_title="Probability",
+        showlegend=False
+    )
+    
+    return fig
