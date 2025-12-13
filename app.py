@@ -313,6 +313,16 @@ def show_image_upload():
                             st.image(digit_img, caption=f"Digit {i+1}", width=100)
                         with col2:
                             st.write(f"Prediction: **{predicted_digit}** (Confidence: {confidence:.1%})")
+
+def show_document_upload():
+    st.subheader("Upload Document")
+    
+    uploaded_file = st.file_uploader("Choose a document", type=['pdf', 'txt'])
+    
+    if uploaded_file is not None:
+        file_ext = uploaded_file.name.split('.')[-1].lower()
+        
+        if file_ext == 'pdf':
         
     
         
