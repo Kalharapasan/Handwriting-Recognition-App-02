@@ -450,3 +450,11 @@ def save_uploaded_file_placeholder(file_type, image):
     file_path = f"uploaded_files/{file_type}/{timestamp}.png"
     image.save(file_path)
     return file_path
+
+if __name__ == "__main__":
+    os.makedirs("uploaded_files/images", exist_ok=True)
+    os.makedirs("uploaded_files/documents", exist_ok=True)
+    os.makedirs("uploaded_files/drawings", exist_ok=True)
+    os.makedirs("models", exist_ok=True)
+    
+    main()
