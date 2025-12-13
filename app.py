@@ -337,6 +337,11 @@ def show_document_upload():
                     
                     with col1:
                         st.image(image, caption=f"Page {page_num + 1}", use_column_width=True)
+                    
+                    with col2:
+                        if st.button(f"Analyze Page {page_num + 1}", key=f"page_{page_num}"):
+                            image_array = np.array(image)
+                            processed_image = ImagePreprocessor.preprocess_image(image_array)
         
     
         
