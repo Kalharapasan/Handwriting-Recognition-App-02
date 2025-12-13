@@ -442,4 +442,5 @@ def show_model_management():
                 f.write(uploaded_model.getbuffer())
             model_manager.load_model("models/handwriting_model.h5")
             st.success("Model updated successfully!")
+        st.subheader("Performance Metrics")
                 
