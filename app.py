@@ -107,3 +107,18 @@ def main():
     st.sidebar.title("Navigation")
     app_mode = st.sidebar.selectbox("Choose Mode", 
         ["🏠 Dashboard", "✍️ Draw Digit", "📁 Upload Image", "📄 Upload Document", "📊 Analytics", "⚙️ Model Management"])
+    
+    st.markdown('<h1 class="main-header">✍️ Advanced Handwriting Recognition System</h1>', unsafe_allow_html=True)
+    
+    if app_mode == "🏠 Dashboard":
+        show_dashboard()
+    elif app_mode == "✍️ Draw Digit":
+        show_drawing_interface()
+    elif app_mode == "📁 Upload Image":
+        show_image_upload()
+    elif app_mode == "📄 Upload Document":
+        show_document_upload()
+    elif app_mode == "📊 Analytics":
+        show_analytics()
+    elif app_mode == "⚙️ Model Management":
+        show_model_management()
