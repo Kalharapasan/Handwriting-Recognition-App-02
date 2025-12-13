@@ -235,6 +235,17 @@ def show_drawing_interface():
                     'confidence': confidence,
                     'image': processed_image
                 }
-            if st.button("🧹 Clear Canvas", use_container_width=True):
-                st.rerun()
+        if st.button("🧹 Clear Canvas", use_container_width=True):
+            st.rerun()
+        
+        if st.session_state.current_prediction:
+            prediction = st.session_state.current_prediction
+            st.markdown(f"""
+            <div class="prediction-box">
+                <h3>Prediction Result</h3>
+                <p><strong>Digit:</strong> {prediction['digit']}</p>
+                <p><strong>Confidence:</strong> <span class="confidence-high">{prediction['confidence']:.1%}</span></p>
+            </div>
+            """, unsafe_allow_html=True)
+            
                 
