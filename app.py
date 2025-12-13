@@ -100,3 +100,7 @@ def plot_prediction_probabilities(predictions):
     )
     
     return fig
+
+def main():
+    local_css()
+    init_session_state()
