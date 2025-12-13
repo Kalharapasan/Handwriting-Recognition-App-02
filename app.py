@@ -104,3 +104,6 @@ def plot_prediction_probabilities(predictions):
 def main():
     local_css()
     init_session_state()
+    st.sidebar.title("Navigation")
+    app_mode = st.sidebar.selectbox("Choose Mode", 
+        ["🏠 Dashboard", "✍️ Draw Digit", "📁 Upload Image", "📄 Upload Document", "📊 Analytics", "⚙️ Model Management"])
