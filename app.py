@@ -122,3 +122,6 @@ def main():
         show_analytics()
     elif app_mode == "⚙️ Model Management":
         show_model_management()
+
+def show_dashboard():
+    col1, col2, col3 = st.columns(3)
