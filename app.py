@@ -125,3 +125,30 @@ def main():
 
 def show_dashboard():
     col1, col2, col3 = st.columns(3)
+    stats = db_manager.get_performance_stats()
+    
+    with col1:
+        st.markdown(f"""
+        <div class="stat-box">
+            <h3>📈 User Accuracy</h3>
+            <h2>{stats['user_accuracy']:.1%}</h2>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown(f"""
+        <div class="stat-box">
+            <h3>🔢 Total Predictions</h3>
+            <h2>{stats['total_predictions']}</h2>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown(f"""
+        <div class="stat-box">
+            <h3>🎯 Avg Confidence</h3>
+            <h2>{stats['average_confidence']:.1%}</h2>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("---")
