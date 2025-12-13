@@ -193,3 +193,10 @@ def show_dashboard():
 def show_drawing_interface():
     st.subheader("Draw a Digit (0-9)")
     col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        try:
+            from streamlit_drawable_canvas import st_canvas
+        except ImportError:
+            st.error("Please install streamlit-drawable-canvas: pip install streamlit-drawable-canvas")
+            return
