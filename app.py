@@ -281,6 +281,13 @@ def show_image_upload():
                     prediction_id = db_manager.add_prediction(
                         predicted_digit, confidence, file_path, "image_upload", uploaded_file.name
                     )
+                    st.markdown(f"""
+                    <div class="prediction-box">
+                        <h3>Prediction Result</h3>
+                        <p><strong>Digit:</strong> {predicted_digit}</p>
+                        <p><strong>Confidence:</strong> <span class="confidence-high">{confidence:.1%}</span></p>
+                    </div>
+                    """, unsafe_allow_html=True)
         
     
         
