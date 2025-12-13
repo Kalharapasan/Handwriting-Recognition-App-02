@@ -411,6 +411,11 @@ def show_analytics():
     fig = px.line(df_daily, x='timestamp', y='count',
                  labels={'timestamp': 'Date', 'count': 'Predictions per Day'})
     st.plotly_chart(fig, use_container_width=True)
+    st.subheader("Input Type Analysis")
+    type_counts = df['type'].value_counts()
+    fig = px.pie(values=type_counts.values, names=type_counts.index,
+                title="Distribution by Input Type")
+    st.plotly_chart(fig, use_container_width=True)
     
         
         
