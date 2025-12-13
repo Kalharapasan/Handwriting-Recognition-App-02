@@ -228,3 +228,10 @@ def show_drawing_interface():
                 prediction_id = db_manager.add_prediction(
                     predicted_digit, confidence, file_path, "drawing", "hand_drawn"
                 )
+                
+                st.session_state.current_prediction = {
+                    'id': prediction_id,
+                    'digit': predicted_digit,
+                    'confidence': confidence,
+                    'image': processed_image
+                }
