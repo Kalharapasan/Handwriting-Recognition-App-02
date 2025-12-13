@@ -298,6 +298,21 @@ def show_image_upload():
                     ax2.axis('off')
                     
                     st.pyplot(fig)
+                else:
+                    file_path = save_uploaded_file(uploaded_file, "images")
+                    digit_images = ImagePreprocessor.extract_digits_from_image(file_path)
+                    
+                    st.write(f"Found {len(digit_images)} digits in the image")
+                    
+                    for i, digit_img in enumerate(digit_images):
+                        processed_image = ImagePreprocessor.preprocess_image(digit_img)
+                        predicted_digit, confidence = model_manager.predict_digit(processed_image)
+                        
+                        col1, col2 = st.columns([1, 2])
+                        with col1:
+                            st.image(digit_img, caption=f"Digit {i+1}", width=100)
+                        with col2:
+                            st.write(f"Prediction: **{predicted_digit}** (Confidence: {confidence:.1%})")
         
     
         
