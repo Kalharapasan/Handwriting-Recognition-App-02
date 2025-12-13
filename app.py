@@ -417,6 +417,19 @@ def show_analytics():
                 title="Distribution by Input Type")
     st.plotly_chart(fig, use_container_width=True)
     
+def show_model_management():
+    st.subheader("Model Management")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("Current Model")
+        st.info("Model loaded successfully!" if model_manager.model else "No model loaded")
         
+        if model_manager.model:
+            st.text("Model Architecture:")
+            summary = []
+            model_manager.model.summary(print_fn=lambda x: summary.append(x))
+            st.text("\n".join(summary))        
         
                 
