@@ -368,7 +368,12 @@ def show_document_upload():
                 st.write(f"Found {len(digits_found)} digits in text: {', '.join(digits_found)}")
 
 def show_analytics():
-    st.subheader("📊 Performance Analytics")       
+    st.subheader("📊 Performance Analytics")
+    predictions = db_manager.get_prediction_history(limit=1000)
+    
+    if not predictions:
+        st.info("No prediction data available yet.")
+        return       
     
         
         
