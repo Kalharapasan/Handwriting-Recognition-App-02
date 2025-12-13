@@ -431,5 +431,15 @@ def show_model_management():
             summary = []
             model_manager.model.summary(print_fn=lambda x: summary.append(x))
             st.text("\n".join(summary))        
+    
+    with col2:
+        st.subheader("Model Operations")
+        st.write("Upload New Model")
+        uploaded_model = st.file_uploader("Choose a model file", type=['h5', 'hdf5'])
         
+        if uploaded_model and st.button("Update Model"):
+            with open("models/handwriting_model.h5", "wb") as f:
+                f.write(uploaded_model.getbuffer())
+            model_manager.load_model("models/handwriting_model.h5")
+            st.success("Model updated successfully!")
                 
