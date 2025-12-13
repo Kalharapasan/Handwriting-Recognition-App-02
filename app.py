@@ -323,6 +323,9 @@ def show_document_upload():
         file_ext = uploaded_file.name.split('.')[-1].lower()
         
         if file_ext == 'pdf':
+            with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as tmp_file:
+                tmp_file.write(uploaded_file.getvalue())
+                tmp_path = tmp_file.name
         
     
         
