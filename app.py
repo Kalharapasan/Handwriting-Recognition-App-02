@@ -342,6 +342,7 @@ def show_document_upload():
                         if st.button(f"Analyze Page {page_num + 1}", key=f"page_{page_num}"):
                             image_array = np.array(image)
                             processed_image = ImagePreprocessor.preprocess_image(image_array)
+                            predicted_digit, confidence = model_manager.predict_digit(processed_image)
         
     
         
