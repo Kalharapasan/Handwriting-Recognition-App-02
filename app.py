@@ -222,3 +222,5 @@ def show_drawing_interface():
 
                 pil_image = Image.fromarray(img_array.astype('uint8'))
                 processed_image = ImagePreprocessor.preprocess_image(np.array(pil_image))
+                
+                predicted_digit, confidence = model_manager.predict_digit(processed_image)
