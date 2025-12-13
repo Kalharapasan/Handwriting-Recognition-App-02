@@ -366,7 +366,9 @@ def show_document_upload():
             digits_found = [char for char in content if char.isdigit()]
             if digits_found:
                 st.write(f"Found {len(digits_found)} digits in text: {', '.join(digits_found)}")
-        
+
+def show_analytics():
+    st.subheader("📊 Performance Analytics")       
     
         
         
