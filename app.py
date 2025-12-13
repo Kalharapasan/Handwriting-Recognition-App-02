@@ -401,6 +401,11 @@ def show_analytics():
         fig = px.bar(x=digit_counts.index, y=digit_counts.values,
                     labels={'x': 'Digit', 'y': 'Count'})
         st.plotly_chart(fig, use_container_width=True)
+    with col2:
+        st.subheader("Confidence Distribution")
+        fig = px.histogram(df, x='confidence', nbins=20,
+                          labels={'confidence': 'Confidence Level'})
+        st.plotly_chart(fig, use_container_width=True)
     
         
         
