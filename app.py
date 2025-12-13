@@ -218,3 +218,4 @@ def show_drawing_interface():
             if canvas_result.image_data is not None:
                 img_array = np.array(canvas_result.image_data)
                 if len(img_array.shape) == 3 and img_array.shape[2] == 4:
+                    img_array = img_array[:, :, :3]
