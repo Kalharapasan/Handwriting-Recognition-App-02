@@ -271,6 +271,12 @@ def show_image_upload():
             process_type = st.radio("Processing Type", 
                                   ["Single Digit", "Multiple Digits"])
         
+        with col2:
+            if st.button("🔍 Analyze Image", use_container_width=True):
+                if process_type == "Single Digit":
+                    image_array = np.array(image)
+                    processed_image = ImagePreprocessor.preprocess_image(image_array)
+        
     
         
         
