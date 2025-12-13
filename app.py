@@ -248,4 +248,16 @@ def show_drawing_interface():
             </div>
             """, unsafe_allow_html=True)
             
+            st.subheader("Provide Feedback")
+            actual_digit = st.number_input("Actual Digit", min_value=0, max_value=9, value=0)
+            correct = st.radio("Was the prediction correct?", ["Yes", "No"])
+            comments = st.text_area("Comments (optional)")
+            
+            if st.button("Submit Feedback"):
+                is_correct = 1 if correct == "Yes" else 0
+                db_manager.add_feedback(prediction['id'], actual_digit, is_correct, comments)
+                st.success("Thank you for your feedback!")
+                st.session_state.current_prediction = None
+        
+        
                 
