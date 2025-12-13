@@ -381,6 +381,19 @@ def show_analytics():
         'type': p.user_input_type
     } for p in predictions]) 
     
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        st.metric("Total Predictions", len(df))
+    with col2:
+        st.metric("Average Confidence", f"{df['confidence'].mean():.1%}")
+    with col3:
+        st.metric("Most Common Digit", df['digit'].mode().iloc[0] if not df.empty else "N/A")
+    with col4:
+        st.metric("Data Collection Period", f"{(df['timestamp'].max() - df['timestamp'].min()).days} days")
+    
+    st.markdown("---")
+    
         
         
                 
