@@ -200,3 +200,14 @@ def show_drawing_interface():
         except ImportError:
             st.error("Please install streamlit-drawable-canvas: pip install streamlit-drawable-canvas")
             return
+        
+        canvas_result = st_canvas(
+            fill_color="rgba(255, 255, 255, 1)",  # Fixed fill color
+            stroke_width=20,
+            stroke_color="#FFFFFF",
+            background_color="#000000",
+            height=280,
+            width=280,
+            drawing_mode="freedraw",
+            key="canvas",
+        )
