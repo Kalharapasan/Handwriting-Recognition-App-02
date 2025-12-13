@@ -268,6 +268,8 @@ def show_image_upload():
         with col1:
             image = Image.open(uploaded_file)
             st.image(image, caption="Uploaded Image", use_column_width=True)
+            process_type = st.radio("Processing Type", 
+                                  ["Single Digit", "Multiple Digits"])
         
     
         
