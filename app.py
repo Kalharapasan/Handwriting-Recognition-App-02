@@ -288,6 +288,16 @@ def show_image_upload():
                         <p><strong>Confidence:</strong> <span class="confidence-high">{confidence:.1%}</span></p>
                     </div>
                     """, unsafe_allow_html=True)
+                    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
+                    ax1.imshow(image_array, cmap='gray')
+                    ax1.set_title("Original Image")
+                    ax1.axis('off')
+                    
+                    ax2.imshow(processed_image.reshape(28, 28), cmap='gray')
+                    ax2.set_title("Processed Image")
+                    ax2.axis('off')
+                    
+                    st.pyplot(fig)
         
     
         
