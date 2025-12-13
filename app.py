@@ -265,6 +265,11 @@ def show_image_upload():
     
     if uploaded_file is not None:
         col1, col2 = st.columns(2)
+        with col1:
+            image = Image.open(uploaded_file)
+            st.image(image, caption="Uploaded Image", use_column_width=True)
+        
+    
         
         
                 
