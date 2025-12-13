@@ -152,3 +152,22 @@ def show_dashboard():
         """, unsafe_allow_html=True)
     
     st.markdown("---")
+    
+    st.subheader("Recent Predictions")
+    recent_predictions = db_manager.get_prediction_history(limit=10)
+    
+    if recent_predictions:
+        prediction_data = []
+        for pred in recent_predictions:
+            prediction_data.append({
+                'Timestamp': pred.timestamp,
+                'Digit': pred.predicted_digit,
+                'Confidence': f"{pred.confidence:.1%}",
+                'Type': pred.user_input_type,
+                'File': pred.file_name
+            })
+        
+        df = pd.DataFrame(prediction_data)
+        st.dataframe(df, use_container_width=True)
+    else:
+        st.info("No predictions yet. Start by drawing or uploading an image!")
