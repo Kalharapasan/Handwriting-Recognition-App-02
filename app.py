@@ -211,3 +211,10 @@ def show_drawing_interface():
             drawing_mode="freedraw",
             key="canvas",
         )
+    with col2:
+        st.subheader("Controls")
+        
+        if st.button("🔍 Predict Drawing", use_container_width=True):
+            if canvas_result.image_data is not None:
+                img_array = np.array(canvas_result.image_data)
+                if len(img_array.shape) == 3 and img_array.shape[2] == 4:
