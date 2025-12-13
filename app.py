@@ -171,3 +171,21 @@ def show_dashboard():
         st.dataframe(df, use_container_width=True)
     else:
         st.info("No predictions yet. Start by drawing or uploading an image!")
+    
+    st.subheader("Quick Actions")
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        if st.button("🎨 Start Drawing", use_container_width=True):
+            st.session_state.current_page = "Draw Digit"
+            st.rerun()
+    
+    with col2:
+        if st.button("📁 Upload Image", use_container_width=True):
+            st.session_state.current_page = "Upload Image"
+            st.rerun()
+    
+    with col3:
+        if st.button("📊 View Analytics", use_container_width=True):
+            st.session_state.current_page = "Analytics"
+            st.rerun()
