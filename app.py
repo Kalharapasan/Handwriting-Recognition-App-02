@@ -219,3 +219,6 @@ def show_drawing_interface():
                 img_array = np.array(canvas_result.image_data)
                 if len(img_array.shape) == 3 and img_array.shape[2] == 4:
                     img_array = img_array[:, :, :3]
+
+                pil_image = Image.fromarray(img_array.astype('uint8'))
+                processed_image = ImagePreprocessor.preprocess_image(np.array(pil_image))
