@@ -224,3 +224,7 @@ def show_drawing_interface():
                 processed_image = ImagePreprocessor.preprocess_image(np.array(pil_image))
                 
                 predicted_digit, confidence = model_manager.predict_digit(processed_image)
+                file_path = save_uploaded_file_placeholder("drawing", pil_image)
+                prediction_id = db_manager.add_prediction(
+                    predicted_digit, confidence, file_path, "drawing", "hand_drawn"
+                )
