@@ -373,7 +373,13 @@ def show_analytics():
     
     if not predictions:
         st.info("No prediction data available yet.")
-        return       
+        return      
+    df = pd.DataFrame([{
+        'timestamp': p.timestamp,
+        'digit': p.predicted_digit,
+        'confidence': p.confidence,
+        'type': p.user_input_type
+    } for p in predictions]) 
     
         
         
